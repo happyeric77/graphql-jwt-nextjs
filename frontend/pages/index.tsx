@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 
 import { request } from "graphql-request";
 import { useState } from "react";
-import jwt from "jsonwebtoken";
 
 interface IUser {
   username: string;
@@ -14,6 +13,7 @@ const Home: NextPage = () => {
   const [users, setUsers] = useState<IUser[]>([]);
   const [inputUsername, setInputUsername] = useState<string>("");
   const [newUsername, setNewUsername] = useState<string>("");
+  const [pwd, setPwd] = useState<string>("");
   async function fetchUsers() {
     const query = `
       query {
@@ -35,13 +35,15 @@ const Home: NextPage = () => {
         }
       }
     `;
-    const token = jwt.sign(
-      {
-        username: "frontend-admin",
-        role: "admin",
+    const tokenRes = await fetch("/api/create-jwt", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      "colorfulLife"
-    );
+      body: JSON.stringify({ pwd: pwd }),
+    });
+    const token = ((await tokenRes.json()) as any).Authorization;
+    console.log(token);
     const res = await request(qlEndpoint, query, undefined, {
       Authorization: token,
     });
@@ -71,6 +73,12 @@ const Home: NextPage = () => {
         type="text"
         onChange={(evt) => setNewUsername(evt.target.value)}
         placeholder="new username"
+      />
+      <input
+        type="text"
+        value={pwd}
+        placeholder="Input credential"
+        onChange={(evt) => setPwd(evt.target.value)}
       />
       <button onClick={() => updateUsername(inputUsername, newUsername)}>
         Submit
