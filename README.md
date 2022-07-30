@@ -1,5 +1,7 @@
 # Create a graphQL endpoint with JWT authentication
 
+# Chapter#1
+
 ## See the detail from the
 
 - [youtube](https://youtu.be/Y5bptLXm9zc)
@@ -12,6 +14,7 @@
 
 - [Official docs with graphql-express](https://graphql.org/graphql-js/running-an-express-graphql-server/)
 - [graphql-express](https://www.npmjs.com/package/express-graphql)
+- [Video work through](https://www.youtube.com/watch?v=Y5bptLXm9zc&t=3034s)
 
 ### Section#2: Nextjs frontend
 
@@ -21,3 +24,13 @@
 
 - [jwt.io](https://jwt.io/)
 - [jasonwebtoken npm package](https://www.npmjs.com/package/jsonwebtoken)
+
+# Chapter#2
+
+Following by previous section, we will make our authenticate system even more robost and deploy it to production server by docker:
+
+- Create a API middle on nextjs frontend
+
+- [Video work through](https://youtu.be/gUtnBTebLQs)
+
+![](https://i.imgur.com/SmverCg.png)
